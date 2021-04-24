@@ -2,7 +2,7 @@
   "name": "employee-crud-api",
   "version": "1.0.0",
   "description": "APLICAÇÃO CRUD API EM NODE.JS QUE ALIMENTARÁ OS 4 PRICNIPAIS FRAMEWORKS DO MERCADO.",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon",
