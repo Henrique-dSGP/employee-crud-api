@@ -1,5 +1,7 @@
 # employee-crud-api
-CRUD Application with api...
+CRUD APP with Node.js + Angular + PostGreSQL
+
+#following br tutorial from Glaucia Lemos [https://www.youtube.com/watch?v=XPkZP2KQtZI]
 
 >Dependencies:
 express@4.17.1

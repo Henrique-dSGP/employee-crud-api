@@ -4,14 +4,31 @@
   "description": "APLICAÇÃO CRUD API EM NODE.JS QUE ALIMENTARÁ OS 4 PRICNIPAIS FRAMEWORKS DO MERCADO.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon",
+    "lint": "eslint --ext .js -f ./node_modules/eslint-friendly-formatter . --fix",
+    "prepush": "npm run lint",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/Henrique-dSGP/employee-crud-api.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "node.js",
+    "api",
+    "crud",
+    "azure-functions",
+    "express",
+    "github-actions",
+    "swa",
+    "serverless",
+    "azure",
+    "postgresql",
+    "sql",
+    "javascript"
+  ],
+  "author": "Henrique Dos Santos",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Henrique-dSGP/employee-crud-api/issues"
@@ -25,6 +42,7 @@
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
+    "eslint-friendly-formatter": "^4.0.1",
     "express": "^4.17.1",
     "express-promise-router": "^4.1.0",
     "pg": "^8.6.0"
