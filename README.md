@@ -1,6 +1,8 @@
 # employee-crud-api
 CRUD APP with Node.js + Angular + PostGreSQL
 
+****I'll do some changes in the Project when i finish the tutorial
+
 #following a br tutorial by Glaucia Lemos [https://www.youtube.com/watch?v=XPkZP2KQtZI]
 
 >Dependencies:
