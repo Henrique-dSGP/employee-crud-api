@@ -36,10 +36,46 @@ exports.createEmployee = async (req, res) => {
 };
 exports.listAllEmployees = async (req, res) => {
     const response = await db.query(
-        `SELECT employee_id, name, job_role, salary, employee_registration, to_char(date_of_birth, 'dd-MM-yyyy') as date_of_birth FROM employee ORDER BY name ASC`,
+        `SELECT employee_id,
+         name, job_role, salary,
+          employee_registration,
+           to_char(date_of_birth, 'dd-MM-yyyy') as date_of_birth
+            FROM employee
+             ORDER BY name ASC`,
     );
     res.status(200).send(response.rows);
 }
+exports.selectEmployeeById = async (req, res) => {
+    const employeeId = req.params.id;
+    try {
+        const response = await db.query(
+            `SELECT employee_id,
+         name, job_role, salary,
+          employee_registration,
+           to_char(date_of_birth, 'dd-MM-yyyy') as date_of_birth
+            FROM employee
+            WHERE employee_id =$1`, [employeeId]
+        );
+        if (response.rows.lenght == 0) {
+            throw 'employee_not_found';
+        }
+        res.status(200).send(response.rows[0]);
+    } catch (err) {
+        console.error('selectEmployeById', err);
+        if (err == 'employee_not_found') {
+            res.status(404).send({
+                message: "Employee not found."
+            });
+        } else {
+            res.status(500).send({
+                message: "Ocorreu um erro."
+            })
+        }
+    }
+}
+///exports.updateEmployee = async (req, res) => {
+    
+//}
 /*
 exports.deleteEmployee = async (req, res) => {
 
