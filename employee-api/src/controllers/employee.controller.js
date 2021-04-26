@@ -73,9 +73,28 @@ exports.selectEmployeeById = async (req, res) => {
         }
     }
 }
-///exports.updateEmployee = async (req, res) => {
-    
-//}
+exports.updateEmployee = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const { name, job_role, salary, date_of_birth, employee_registration } = req.body;
+        const { response } = await db.query(`UPDATE employee 
+            SET name = $1, 
+            job_role = $2, 
+            salary = $3, 
+            date_of_birth = $4, 
+            employee_registration = $5
+            WHERE employee_id = $6`,
+            [name, job_role, salary, date_of_birth, employee_registration, id]);
+        res.status(200).send({
+            message: "Employee updated"
+        });
+    } catch (err) {
+        console.error('updateEmployee', err);
+        res.status(500).send({
+            message: "An error occurred."
+        });
+    }
+};
 /*
 exports.deleteEmployee = async (req, res) => {
 
@@ -92,4 +111,4 @@ exports.deleteEmployee = async (req, res) => {
             message: "Error"
         });
     }
-};*/
+}*/
