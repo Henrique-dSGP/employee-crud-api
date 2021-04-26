@@ -1,30 +1,51 @@
 /**
  * arquivo: config/employee.controller.js
- * descrição: arquivo responsável pelas 'connectionStrings' (Cosmos DB & PostgreSQL)
+ * descrição: arquivo responsável pela lógica do CRUD Employee
  * data: 25/04/2021
  * autor: <@hdsgp>
  */
 
-const { Pool, Client } = require('pg');
-const dotenv = require('dotenv');
+const db = require('../config/database');
 
-dotenv.config();
+//motodo para criar novo employee
 
-// Conexão com a base de dados
-const pool = new Pool({
-    connectionString = process.env.DATABASE_URL
-});
+exports.createEmployee = async (req, res) => {
 
 
-pool.on('error', (err, client) => {
-    console.log('Unexpected error on idle client', err);
-    process.exit(-1);
-});
+    const { name, job_role, salary, date_of_birth, employee_registration } = req.body;
+    try {
+        const { rows } = await db.query(
+            "INSERT INTO employee ( name, job_role, salary, date_of_birth, employee_registration) VALUES ($1, $2, $3, $4, $5)",
+            [name, job_role, salary, date_of_birth, employee_registration]
+        );
+        res.status(201).send({
+            message: 'Employee added successfully!',
+            body: {
+                employee: {
+                    name, job_role, salary, date_of_birth, employee_registration
+                }
+            },
+        });
+    } catch (error) {
+        console.error('createEmployee', error);
+        res.status(500).send({
+            message: "Error"
+        });
+    }
+};/*
+exports.deleteEmployee = async (req, res) => {
 
-pool.on('connect', () => {
-    console.log('Db conectado com sucesso!');
-});
 
-module.exports = {
-    query: (text, params) => pool.query(text, params),
-};
+    const { id } = req.params;
+    try {
+        await db.query("DELETE FROM employee WHERE employee_id = $1", [id]);
+        res.status(201).send({
+            message: 'Employee deleted successfully!',
+        });
+    } catch (error) {
+        console.error('deleteEmployeeById', error);
+        res.status(500).send({
+            message: "Error"
+        });
+    }
+};*/
