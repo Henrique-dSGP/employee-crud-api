@@ -6,6 +6,7 @@
  */
 
 const { Pool, Client } = require('pg');
+//ao colar, crie um arquivo .env e insira o DATABASE_URL ou altere aqui mesmo referente ao seu pg server
 const connectionString = process.env.DATABASE_URL;
 const dotenv = require('dotenv');
 

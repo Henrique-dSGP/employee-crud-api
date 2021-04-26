@@ -14,6 +14,7 @@ exports.createEmployee = async (req, res) => {
 
     const { name, job_role, salary, date_of_birth, employee_registration } = req.body;
     try {
+        //cuidado com a falta de virgulas!, perdi um tempo por isso.
         const { rows } = await db.query(
             "INSERT INTO employee ( name, job_role, salary, date_of_birth, employee_registration) VALUES ($1, $2, $3, $4, $5)",
             [name, job_role, salary, date_of_birth, employee_registration]
@@ -32,7 +33,14 @@ exports.createEmployee = async (req, res) => {
             message: "Error"
         });
     }
-};/*
+};
+exports.listAllEmployees = async (req, res) => {
+    const response = await db.query(
+        `SELECT employee_id, name, job_role, salary, employee_registration, to_char(date_of_birth, 'dd-MM-yyyy') as date_of_birth FROM employee ORDER BY name ASC`,
+    );
+    res.status(200).send(response.rows);
+}
+/*
 exports.deleteEmployee = async (req, res) => {
 
 
