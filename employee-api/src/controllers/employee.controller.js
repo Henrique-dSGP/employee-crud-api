@@ -95,15 +95,15 @@ exports.updateEmployee = async (req, res) => {
         });
     }
 };
-/*
+
 exports.deleteEmployee = async (req, res) => {
 
 
     const { id } = req.params;
     try {
         await db.query("DELETE FROM employee WHERE employee_id = $1", [id]);
-        res.status(201).send({
-            message: 'Employee deleted successfully!',
+        res.status(200).send({
+            message: 'Employee deleted',
         });
     } catch (error) {
         console.error('deleteEmployeeById', error);
@@ -111,4 +111,4 @@ exports.deleteEmployee = async (req, res) => {
             message: "Error"
         });
     }
-}*/
+}
