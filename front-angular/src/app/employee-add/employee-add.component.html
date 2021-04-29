@@ -1,6 +1,46 @@
 <div class="card mt-5">
-    <div class="card-body">
-        <form>
+    <div class="card-body mt-0">
+        <div class="form-group mt-0">
+            <form [formGroup]="empForm" (ngSubmit)="submit()" class="mt-0">
+                    <label for="empname" class="mt-2">Employee Name:</label>
+                    <input type="text" class="form-control" formControlName="empname" id="empname" placeholder="full name" required>
+                    <div *ngIf="validatorInputs('empname')" class="alert alert-danger">
+                        <div *ngIf="validatorErrorsRequired('empname')">
+                            This field is required!
+                        </div>
+                    </div>
+                    <label for="jobrole">Job Role:</label>
+                    <input type="text" class="form-control" formControlName="jobrole" id="jobrole" placeholder="Ex: Manager" required>
+                    <div *ngIf="validatorInputs('jobrole')" class="alert alert-danger">
+                        <div *ngIf="validatorErrorsRequired('jobrole')">
+                            This field is required!
+                        </div>
+                    </div>
+                    <label for="salary">Month Salary:</label>
+                    <input type="number" class="form-control" formControlName="salary" id="salary" placeholder="Ex:1234,32" required>
+                    <div *ngIf="validatorInputs('salary')" class="alert alert-danger">
+                        <div *ngIf="validatorErrorsRequired('salary')">
+                            This field is required and only accepts numbers['0..9' and ['.' or ',']]!
+                        </div>
+                    </div>
+                    <label for="birthdate" class="col-form-label" >Birthdate:</label>
+                    <input type="date" class="form-control" formControlName="birthdate" #birthdate id="birthdate">
+                    <div *ngIf="validatorInputs('birthdate')" class="alert alert-danger">
+                        <div *ngIf="validatorErrorsRequired('birthdate')">
+                            This field is required!
+                        </div>
+                    </div>
+                    <label for="empreg">Employee Registration Number:</label>
+                    <input type="number" class="form-control" formControlName="empreg" id="empreg" placeholder="0001" step=".01"required>
+                    <div *ngIf="validatorInputs('empreg')" class="alert alert-danger">
+                        <div *ngIf="validatorErrorsRequired('empreg')">
+                            This field is required and only accepts numbers['0..9']!
+                        </div>
+                    </div>
+                    <button class="btn btn-info float-left mt-3" type="button" (click)="resetValue()">Reset Values</button>
+                    <button class="btn btn-primary float-right mt-3" type="submit" [disabled]="empForm.pristine || empForm.invalid">Submit</button>
+                </form>
+        <!--<form>
             <div class="form-group">
                 <label for="emp-name" class="col-form-label">Employee Name</label>
                 <input type="text" class="form-control" placeholder="Full Name">
@@ -18,19 +58,22 @@
                 <label for="birthdate" class="col-form-label" >Birthdate</label>
                     <input type="date" class="form-control" formControlName="birthDate" #birthDate placeholder="dd/mm/yyyy" id="date-input">
             </div>
-            <!--<div *ngIf="validatorInputs('birthDate')" class="alert alert-danger">
+            <div *ngIf="validatorInputs('birthDate')" class="alert alert-danger">
                 <div *ngIf="validatorErrorsRequired('birthDate')">
                     Birthdate Field Required!
                 </div>
-            </div>-->
+            </div>
 
             <div class="form-group">
                 <label for="emp-reg" class="col-form-label">Registration Number</label>
                 <input type="text" class="form-control" placeholder="000123">
             </div>
-            <div class="text-right">
-                <button type="submit" class="btn btn-primary">Submit</button>
+            <div class="form-group container-fluid text-center">
+                <button type="button" class="btn btn-danger float-left">Back</button>
+                <button type="submit" class="btn btn-primary float-right">Submit</button>
             </div>
+            
         </form>
+    -->
     </div>
 </div>
