@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-employee-add',
-  templateUrl: './employee-add.component.html',
-  styleUrls: ['./employee-add.component.css']
+  selector: 'app-add-emp-dialog-body',
+  templateUrl: './add-emp-dialog-body.component.html',
+  providers:[]
 })
-export class EmployeeAddComponent implements OnInit {
-
+export class AddEmpDialogBodyComponent {
+  
   empForm = new FormGroup({
     empname: new FormControl('', [Validators.required, Validators.minLength(5)]),
     jobrole: new FormControl('', [Validators.required, Validators.minLength(4)]),
@@ -16,11 +17,12 @@ export class EmployeeAddComponent implements OnInit {
     empreg: new FormControl('', Validators.required)
     
   })
-  constructor(private fb: FormBuilder) {
-
+  constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) private data:any) {
+    
   }
 
   ngOnInit(): void {
+    
   }
   submit() {
     if (this.empForm.status === 'VALID') {
@@ -40,6 +42,22 @@ export class EmployeeAddComponent implements OnInit {
   }
   validatorErrorsRequired(control: string): boolean{
     return this.getControl(control).errors?.required
+  }
+
+  getName() {
+    return this.empForm.get('name')
+  }
+  getJobRole() {
+    return this.empForm.get('jobrole')
+  }
+  getSalary() {
+    return this.empForm.get('salary')
+  }
+  getBirthdate() {
+    return this.empForm.get('birthdate')
+  }
+  getEmpReg() {
+    return this.empForm.get('empreg')
   }
 
 }

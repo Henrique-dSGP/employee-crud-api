@@ -1,8 +1,8 @@
-<div class="card mt-5">
-        <div class="bg-dark card-header">
-            <i></i>
-        </div>
-        <div class="card-body mt-0 border-info border-left border-right border-bottom border-top-0">
+<h3 mat-dialog-title>Add new employee</h3>
+<div mat-dialog-content>
+
+    <div class="card border-darken-1">
+        <div class="card-body mt-0">
             <div class="form-group mt-0">
                 <form [formGroup]="empForm" (ngSubmit)="submit()" class="mt-0">
                     <label for="empname" class="mt-2">Employee Name:</label>
@@ -29,7 +29,7 @@
                             This field is required and only accepts numbers['0..9' and ['.' or ',']]!
                         </div>
                     </div>
-                    <label for="birthdate" class="col-form-label">Birthdate:</label>
+                    <label for="birthdate">Birthdate:</label>
                     <input type="date" class="form-control" formControlName="birthdate" #birthdate id="birthdate">
                     <div *ngIf="validatorInputs('birthdate')" class="alert alert-danger">
                         <div *ngIf="validatorErrorsRequired('birthdate')">
@@ -49,41 +49,10 @@
                     <button class="btn btn-primary float-right mt-3" type="submit"
                         [disabled]="empForm.pristine || empForm.invalid">Submit</button>
                 </form>
-                <!--<form>
-                <div class="form-group">
-                    <label for="emp-name" class="col-form-label">Employee Name</label>
-                    <input type="text" class="form-control" placeholder="Full Name">
-                </div>
-                <div class="form-group">
-                    <label for="job-role" class="col-form-label">Job Role</label>
-                    <input type="text" class="form-control" placeholder="Job Role">
-                </div>
-                <div class="form-group">
-                    <label for="salary" class="col-form-label">Salary</label>
-                    <input type="text" class="form-control" placeholder="Salary">
-                </div>
-
-                <div class="form-group">
-                    <label for="birthdate" class="col-form-label" >Birthdate</label>
-                        <input type="date" class="form-control" formControlName="birthDate" #birthDate placeholder="dd/mm/yyyy" id="date-input">
-                </div>
-                <div *ngIf="validatorInputs('birthDate')" class="alert alert-danger">
-                    <div *ngIf="validatorErrorsRequired('birthDate')">
-                        Birthdate Field Required!
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="emp-reg" class="col-form-label">Registration Number</label>
-                    <input type="text" class="form-control" placeholder="000123">
-                </div>
-                <div class="form-group container-fluid text-center">
-                    <button type="button" class="btn btn-danger float-left">Back</button>
-                    <button type="submit" class="btn btn-primary float-right">Submit</button>
-                </div>
-                
-            </form>
-        -->
             </div>
         </div>
     </div>
+</div>
+<div mat-dialog-actions>
+    <button class="btn btn-danger" type="button" mat-dialog-close>Close</button>
+</div>
