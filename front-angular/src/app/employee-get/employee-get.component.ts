@@ -17,10 +17,12 @@ export class EmployeeGetComponent implements OnInit {
   openDialog() {
     const dialogRef = this.dialog.open(AddEmpDialogBodyComponent, {
       hasBackdrop: false,
-      width: '50%',
-      height: '90%',
-      maxHeight: '100%',
-      backdropClass:'backdropBackground'
+      width: '70%',
+      minWidth:'60%',
+      maxWidth: '100%',
+      maxHeight:'100%',
+      backdropClass: 'backdropBackground',
+      panelClass: 'dialog-custom'
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('Dialog result: ${result}');
