@@ -5,6 +5,7 @@ import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 import { HttpClientModule } from '@angular/common/http';
 import { MatDialogModule } from '@angular/material/dialog'
 import { EmployeesService } from './employees.service';
+import {MatButtonModule} from '@angular/material/button';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -30,7 +31,8 @@ import { AddEmpDialogBodyComponent } from './add-emp-dialog-body/add-emp-dialog-
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatButtonModule
   ],
   providers: [
     EmployeesService,

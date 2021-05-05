@@ -19,7 +19,7 @@ export class EmployeeGetComponent implements OnInit {
       hasBackdrop: false,
       width: '70%',
       minWidth:'60%',
-      maxWidth: '100%',
+      maxWidth: '105%',
       maxHeight:'100%',
       backdropClass: 'backdropBackground',
       panelClass: 'dialog-custom'
