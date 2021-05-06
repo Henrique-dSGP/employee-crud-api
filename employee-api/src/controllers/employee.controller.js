@@ -13,6 +13,7 @@ exports.createEmployee = async (req, res) => {
 
 
     const { name, job_role, salary, date_of_birth, employee_registration } = req.body;
+    console.log(name, job_role, salary, date_of_birth, employee_registration)
     try {
         //cuidado com a falta de virgulas!, perdi um tempo por isso.
         const { rows } = await db.query(

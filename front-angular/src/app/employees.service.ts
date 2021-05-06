@@ -7,6 +7,8 @@
 
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import Employee from './Employee';
 
 @Injectable({
   providedIn: 'root'
@@ -18,14 +20,8 @@ export class EmployeesService {
   constructor(private http: HttpClient) {
     
   }
-  createNewEmployee(employee_name: any, job_role: any, salary: any, birth: any, employe_reg: any): void {
-    const emp = {
-      employee_name,
-      job_role,
-      salary,
-      birth,
-      employe_reg
-    }
-    this.http.post(`${this.url}/employees`, emp).subscribe(res => console.log('done'))
+  createNewEmployee(employee: Employee): Observable<any> {
+    return this.http.post(`${this.url}/employees`, employee)
+    //this.http.post(`${this.url}/employees`, emp).subscribe(res => console.log(res))
   }
 }

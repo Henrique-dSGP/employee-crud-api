@@ -1,6 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
+import { EmployeesService } from '../employees.service';
 
 @Component({
   selector: 'app-add-emp-dialog-body',
@@ -10,14 +13,18 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class AddEmpDialogBodyComponent {
   
   empForm = new FormGroup({
-    empname: new FormControl('', [Validators.required, Validators.minLength(5)]),
-    jobrole: new FormControl('', [Validators.required, Validators.minLength(4)]),
+    name: new FormControl('', [Validators.required, Validators.minLength(5)]),
+    job_role: new FormControl('', [Validators.required, Validators.minLength(4)]),
     salary: new FormControl('', Validators.required),
-    birthdate: new FormControl('', Validators.required),
-    empreg: new FormControl('', Validators.required)
+    date_of_birth: new FormControl('', Validators.required),
+    employee_registration: new FormControl('', Validators.required)
     
-  })
-  constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) private data:any) {
+  })//name, job_role, salary, date_of_birth, employee_registration
+  constructor(private fb: FormBuilder,
+    @Inject(MAT_DIALOG_DATA) private data: any,
+    private empService: EmployeesService,
+    private router: Router,
+    public dialogRef: MatDialogRef<AddEmpDialogBodyComponent>) {
     
   }
 
@@ -58,6 +65,22 @@ export class AddEmpDialogBodyComponent {
   }
   getEmpReg() {
     return this.empForm.get('empreg')
+  }
+  createNewEmployee(): void {
+    console.log(this.empForm.value)
+    this.empService.createNewEmployee(this.empForm.value).subscribe(res => {
+      Swal.fire({
+        title: 'Employee added',
+        icon: 'success',
+        showConfirmButton: true,
+        allowOutsideClick: false,
+        allowEnterKey: true,
+        allowEscapeKey: false
+      }).then((data) => {
+        this.dialogRef.close()
+        this.router.navigate(['/employee'])
+      })
+    });
   }
 
 }
