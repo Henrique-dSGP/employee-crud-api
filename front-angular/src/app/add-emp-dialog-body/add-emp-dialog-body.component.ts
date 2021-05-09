@@ -69,6 +69,7 @@ export class AddEmpDialogBodyComponent {
   createNewEmployee(): void {
     console.log(this.empForm.value)
     this.empService.createNewEmployee(this.empForm.value).subscribe(res => {
+      
       Swal.fire({
         title: 'Employee added',
         icon: 'success',
@@ -79,6 +80,18 @@ export class AddEmpDialogBodyComponent {
       }).then((data) => {
         this.dialogRef.close()
         this.router.navigate(['/employee'])
+      })
+        
+    }, errorCalback => {
+      Swal.fire({
+        title: 'Register Error',
+        icon: 'error',
+        showConfirmButton: true,
+        allowOutsideClick: false,
+        allowEnterKey: true,
+        allowEscapeKey: false
+      }).then((data) => {
+        this.dialogRef.close()
       })
     });
   }
