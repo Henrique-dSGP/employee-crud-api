@@ -1,2 +1,33 @@
-<p>employee-get works!</p>
-<button type="button" rounded="true" data-toggle="modal" class="btn btn-primary" (click)="openDialog()" mdbWavesEffect>Add New Employee</button>
+<table class="table table-hover table-striped">
+    <caption>List of Employees</caption>
+    <thead class="table-borderless">
+        <tr>
+
+            <td class="text-center font-weight-bold align-middle">Name</td>
+            <td class="text-center font-weight-bold align-middle">Job Role</td>
+            <td class="text-center font-weight-bold align-middle">Salary</td>
+            <td class="text-center font-weight-bold align-middle">Birth</td>
+            <td class="text-center font-weight-bold align-middle">Registration Nº</td>
+            <td colspan="2" class="font-weight-bold align-middle">Actions</td>
+            <td><button type="button" rounded="true" data-toggle="modal" class="btn btn-primary btn-sm"
+                    (click)="openDialog()">Add</button></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let employee of employees">
+            <td class="text-center align-middle">{{employee.name}}</td>
+            <td class="text-center align-middle">{{employee.job_role}}</td>
+            <td class="text-center align-middle">{{employee.salary}}</td>
+            <td class="text-center align-middle">{{employee.date_of_birth}}</td>
+            <td class="text-center align-middle">{{employee.employee_registration}}</td>
+            <td [routerLink]="['/employees', employee.employee_id]" routerLinkActive="router-link-active"><span
+                    class="material-icons btn btn-info m-0">
+                    edit
+                </span> </td>
+            <td><span (click)="deleteEmployee(employee.employee_id)"
+                    class="material-icons btn btn-danger m-0">
+                    delete
+                </span> </td>
+        </tr>
+    </tbody>
+</table>

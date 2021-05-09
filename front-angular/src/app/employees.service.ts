@@ -24,4 +24,11 @@ export class EmployeesService {
     return this.http.post(`${this.url}/employees`, employee)
     //this.http.post(`${this.url}/employees`, emp).subscribe(res => console.log(res))
   }
+  getEmployees(): Observable<any>{
+    ///aplicar conversão JSON to TsArray aqui
+    return this.http.get(`${this.url}/employees`)
+  }
+  deleteEmployee(employee_id: string): Observable<any>{
+    return this.http.delete(`${this.url}/employees/` + employee_id);
+  }
 }

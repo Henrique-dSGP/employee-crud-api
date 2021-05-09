@@ -1,7 +1,8 @@
 export default class Employee{
-    empname: string = '';
-    jobrole: string = '';
+    employee_id: string = '';
+    name: string = '';
+    job_role: string = '';
     salary: number = 0;
-    birthdate: Date = new Date();
-    empreg: number = 0;
+    date_of_birth: Date = new Date();
+    employee_registration: number = 0;
 }
