@@ -12,6 +12,7 @@ const app = express();
 // Rotas da Api(Employee)
 const index = require('./routes/index');
 const employeeRoute = require('./routes/employee.routes');
+const jobRoute = require('./routes/job-roles.routes');
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -20,5 +21,6 @@ app.use(cors());
 
 app.use(index);
 app.use('/api/', employeeRoute);
+app.use('/api/', jobRoute);
 
 module.exports = app;
