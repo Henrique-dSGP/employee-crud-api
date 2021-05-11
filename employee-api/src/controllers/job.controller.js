@@ -1,7 +1,7 @@
 const db = require('../config/database');
 
 exports.createJobRole = async (req, res) => {
-    const { name, min_wage, max_wage, min_w_exp }
+    const { name, min_wage, max_wage, min_w_exp } = req.body
     try {
         const { rows } = await db.query(
             "INSER INTO job_role (name, min_wage, max_wage, min_w_exp) VALUES ($1, $2, $3, $4)",
@@ -57,7 +57,7 @@ exports.selectJobRoleById = async (req, res) => {
 exports.updateJobRole = async (req, res) => {
     const { id } = req.params;
     try {
-        const { name, min_wage, max_wage, min_w_exp };
+        const { name, min_wage, max_wage, min_w_exp } = req.body;
         const { response } = await db.query(
             "UPDATE job_role SET name = $1, min_wage = $2, max_wage = $3, min_w_exp = $4 WHERE _id = $5 ",
             [name, min_wage, max_wage, min_w_exp, id]

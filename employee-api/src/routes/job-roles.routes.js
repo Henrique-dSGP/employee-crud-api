@@ -13,3 +13,4 @@ router.post('/job_roles', jobControler.createJobRole);
 router.post('/job_roles/:id', jobControler.updateJobRole);
 router.get('/job_roles/:id', jobControler.selectJobRoleById);
 router.get('/job_roles', jobControler.listAllJobRoles);
+module.exports = router;
