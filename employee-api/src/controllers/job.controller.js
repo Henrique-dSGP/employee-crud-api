@@ -2,9 +2,10 @@ const db = require('../config/database');
 
 exports.createJobRole = async (req, res) => {
     const { name, min_wage, max_wage, min_w_exp } = req.body
+    console.log(name, min_wage, max_wage, min_w_exp);
     try {
         const { rows } = await db.query(
-            "INSER INTO job_role (name, min_wage, max_wage, min_w_exp) VALUES ($1, $2, $3, $4)",
+            "INSERT INTO job_role (name, min_wage, max_wage, min_w_exp) VALUES ($1, $2, $3, $4)",
             [name, min_wage, max_wage, min_w_exp]
         );
         res.status(200).send({
@@ -24,7 +25,7 @@ exports.createJobRole = async (req, res) => {
 exports.listAllJobRoles = async (req, res) => {
     try {
         const response = await db.query(
-            "SELECT name, min_wage, max_wage, min_w_exp FROM job_role ORDER BY name ASC",
+            "SELECT _id, name, min_wage, max_wage, min_w_exp FROM job_role ORDER BY name ASC",
         );
         res.status(200).send(response.rows);
     } catch (err) {
@@ -34,9 +35,9 @@ exports.listAllJobRoles = async (req, res) => {
     }
 }
 exports.selectJobRoleById = async (req, res) => {
-    const job_role_Id = req.params.id;
+    const _id = req.params.id;
     try {
-        const response = await db.query("SELECT name, min_wage, max_wage, min_w_exp FROM job_role WHERE _id = $1", [job_role_Id]
+        const response = await db.query("SELECT name, min_wage, max_wage, min_w_exp FROM job_role WHERE _id = $1", [_id]
         );
         if (response.rows.length == 0) {
             throw 'Job Role Not Found.'

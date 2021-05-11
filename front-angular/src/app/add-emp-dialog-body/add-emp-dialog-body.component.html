@@ -13,14 +13,21 @@
                             This field is required!
                         </div>
                     </div>
-                    <label for="job_role">Job Role:</label>
+                    <!--<label for="job_role">Job Role:</label>
                     <input type="text" class="form-control" formControlName="job_role" #jobrole id="job_role"
                         placeholder="Ex: Manager" required>
                     <div *ngIf="validatorInputs('job_role')" class="alert alert-danger">
                         <div *ngIf="validatorErrorsRequired('job_role')">
                             This field is required!
                         </div>
-                    </div>
+                    </div>-->
+                    <label for="job_role">Job Role:</label>
+                    <select name="job_role" id="job_role" class="form-control" formControlName="job_role" #job_role id="job_role">
+                        <option  *ngFor="let job of jobs" [value]="job._id" [selected]="job._id" required>
+                            {{job.name}}
+                        </option>
+                    </select>
+
                     <label for="salary">Month Salary:</label>
                     <input type="number" class="form-control" formControlName="salary" #salary id="salary"
                         placeholder="Ex:1234,32" required>

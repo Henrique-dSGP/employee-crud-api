@@ -4,6 +4,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { EmployeesService } from '../employees.service';
+import { JobRoleService } from '../job-role.service';
+import JobRole from '../JobRole';
 
 @Component({
   selector: 'app-add-emp-dialog-body',
@@ -11,6 +13,7 @@ import { EmployeesService } from '../employees.service';
   providers:[]
 })
 export class AddEmpDialogBodyComponent {
+  jobs: JobRole[] = [];
   
   empForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(5)]),
@@ -24,11 +27,14 @@ export class AddEmpDialogBodyComponent {
     @Inject(MAT_DIALOG_DATA) private data: any,
     private empService: EmployeesService,
     private router: Router,
-    public dialogRef: MatDialogRef<AddEmpDialogBodyComponent>) {
+    public dialogRef: MatDialogRef<AddEmpDialogBodyComponent>, private jobRoleService: JobRoleService) {
     
   }
 
   ngOnInit(): void {
+    this.jobRoleService.getJobRoles().subscribe((data: JobRole[]) => {
+      this.jobs = data;
+    })
     
   }
   submit() {
@@ -45,12 +51,13 @@ export class AddEmpDialogBodyComponent {
   }
 
   validatorInputs(control: string): boolean{
-    return this.getControl(control).invalid && (this.getControl(control).dirty || this.getControl(control).touched);
+    return this.getControl(control).invalid && (this.getControl(control).dirty || this.getControl(control)
+    .touched);
   }
   validatorErrorsRequired(control: string): boolean{
     return this.getControl(control).errors?.required
   }
-
+  
   getName() {
     return this.empForm.get('name')
   }
@@ -80,6 +87,7 @@ export class AddEmpDialogBodyComponent {
       }).then((data) => {
         this.dialogRef.close()
         this.router.navigate(['/employee'])
+        document.location.reload()
       })
         
     }, errorCalback => {

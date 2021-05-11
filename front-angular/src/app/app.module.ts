@@ -15,6 +15,8 @@ import { EmployeeEditComponent } from './employee-edit/employee-edit.component';
 import { EmployeeGetComponent } from './employee-get/employee-get.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddEmpDialogBodyComponent } from './add-emp-dialog-body/add-emp-dialog-body.component';
+import { AddJobDialogBodyComponent } from './add-job-dialog-body/add-job-dialog-body.component';
+import { JobRoleGetComponent } from './job-role-get/job-role-get.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { AddEmpDialogBodyComponent } from './add-emp-dialog-body/add-emp-dialog-
     EmployeeAddComponent,
     EmployeeEditComponent,
     EmployeeGetComponent,
-    AddEmpDialogBodyComponent
+    AddEmpDialogBodyComponent,
+    AddJobDialogBodyComponent,
+    JobRoleGetComponent
   ],
   imports: [
     BrowserModule,

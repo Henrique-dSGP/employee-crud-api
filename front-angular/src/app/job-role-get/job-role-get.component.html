@@ -1,0 +1,32 @@
+<table class="table table-hover table-striped">
+    <caption>List of Job Roles</caption>
+    <thead class="table-borderless">
+        <tr>
+
+            <td class="text-center font-weight-bold align-middle">Name</td>
+            <td class="text-center font-weight-bold align-middle">Min Wage</td>
+            <td class="text-center font-weight-bold align-middle">Max Wage</td>
+            <td class="text-center font-weight-bold align-middle">Min Experience</td>
+            <td colspan="2" class="font-weight-bold align-middle">Actions</td>
+            <td><button type="button" rounded="true" data-toggle="modal" class="btn btn-primary btn-sm"
+                    (click)="openDialog()">Add</button></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let jobRole of jobRoles">
+            <td class="text-center align-middle">{{jobRole.name}}</td>
+            <td class="text-center align-middle">{{jobRole.min_wage}}</td>
+            <td class="text-center align-middle">{{jobRole.max_wage}}</td>
+            <td class="text-center align-middle">{{jobRole.min_w_exp}}</td>
+            <td class="text-center align-middle">{{jobRole._id}}</td>
+            <td [routerLink]="['/job_roles', jobRole._id]" routerLinkActive="router-link-active"><span
+                    class="material-icons btn btn-info m-0">
+                    edit
+                </span> </td>
+            <td><span (click)="deleteJobRole(jobRole._id)"
+                    class="material-icons btn btn-danger m-0">
+                    delete
+                </span> </td>
+        </tr>
+    </tbody>
+</table>

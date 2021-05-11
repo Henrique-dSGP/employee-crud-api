@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import Swal from 'sweetalert2';
 import { AddEmpDialogBodyComponent } from '../add-emp-dialog-body/add-emp-dialog-body.component';
 import Employee from '../Employee';
 import { EmployeesService } from '../employees.service';
+import { JobRoleService } from '../job-role.service';
+import JobRole from '../JobRole';
 
 @Component({
   selector: 'app-employee-get',
@@ -12,22 +14,39 @@ import { EmployeesService } from '../employees.service';
 })
 export class EmployeeGetComponent implements OnInit {
   employees: Employee[] = [];
+  jobs: JobRole[] = [];
 
-  constructor(private dialog: MatDialog, private employeeService: EmployeesService) { }
-
+  constructor(private dialog: MatDialog, private employeeService: EmployeesService, private jobRoleService: JobRoleService) {
+    //console.log(this.jobss)
+    //console.log(this.employeess)
+  }
   ngOnInit(): void {
+    this.jobRoleService.getJobRoles().subscribe((data: JobRole[]) => {
+      this.jobs = data;
+    })
     this.employeeService.getEmployees().subscribe((data: Employee[]) => {
       this.employees = data;
-    }) 
+      var job_name = '';
+      //unico jeito que achei de substituir o id do job_role no employees pelo nome referente ao id
+      //raras vezes ele retorna o id normal como se não fosse feita a substituição
+      for (var i = 0; i < this.employees.length; i++) {
+        for (var jo of this.jobs) {
+          if (this.employees[i].job_role == jo._id) {
+            job_name = this.employees[i].job_role;
+            this.employees[i].job_role = jo.name;
+          }
+        }
+      }
+    })
   }
 
   openDialog() {
     const dialogRef = this.dialog.open(AddEmpDialogBodyComponent, {
       hasBackdrop: false,
       width: '70%',
-      minWidth:'60%',
+      minWidth: '60%',
       maxWidth: '105%',
-      maxHeight:'100%',
+      maxHeight: '100%',
       backdropClass: 'backdropBackground',
       panelClass: 'dialog-custom'
     });
@@ -36,7 +55,7 @@ export class EmployeeGetComponent implements OnInit {
     })
   }
   save() {
-    
+
   }
   deleteEmployee(id: string): void {
     this.employeeService.deleteEmployee(id).subscribe(res => {
