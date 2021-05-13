@@ -1,3 +1,10 @@
+<div class="text-center">
+    <button class="mt-2 border-info" mat-stroked-button color="primary" (click)="openDialog()">
+        <span class="material-icons mr-2">
+            person_add
+            </span> 
+            Register New Employee</button>
+</div>
 <table class="table table-hover table-striped">
     <caption>List of Employees</caption>
     <thead class="table-borderless">
@@ -9,8 +16,6 @@
             <td class="text-center font-weight-bold align-middle">Birth</td>
             <td class="text-center font-weight-bold align-middle">Registration Nº</td>
             <td colspan="2" class="font-weight-bold align-middle">Actions</td>
-            <td><button type="button" rounded="true" data-toggle="modal" class="btn btn-primary btn-sm"
-                    (click)="openDialog()">Add</button></td>
         </tr>
     </thead>
     <tbody>

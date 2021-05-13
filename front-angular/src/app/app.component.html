@@ -1,14 +1,42 @@
-<div class="logo-img-extend col-md-12 p-0 ml-0 mr-0" alt="logo-extend-image.png">
+<!--<div class="logo-img-extend col-md-12 p-0 ml-0 mr-0" alt="logo-extend-image.png">
   
-<img class="img-fluid img-logo" src="../assets/logo.png"alt="logo-image.png">
+<img class="img-fluid img-logo" src="../assets/logo2.png"alt="logo-image.png">
+</div>-->
+<div class="bg-dark">
+  <nav class="navbar navbar-expand navbar-light bg-light nav-topo border border-dark">
+    <div class="container-fluid">
+      <ul class="navbar-nav mt-auto mb-auto container-fluid">
+        <li class="nav-item mt-auto mb-auto">
+          <a href="" class="home-link">OM</a>
+        </li>
+        <li class="nav-item mt-auto mb-auto ml-auto">
+          <a href="" class="nav-link font-weight-bold text-uppercase">User Logs</a>
+        </li>
+        <li class="nav-item mt-auto mb-auto ml-auto">
+          <a href="" class="nav-link">
+            <span class="material-icons">
+            account_circle
+            </span></a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
+<div class="logo-text text-center bold h2 bg-dark">
+  <div class="d-none d-md-inline">
+  <p class="logo-text logo-ini d-none d-sm-inline">O</p>PTMIZED <br> MANAGER
+  </div> 
 </div>
 <div class="bg-dark col-md-12">
   <ng2-slim-loading-bar color="#ccc" height="10px" progress=10></ng2-slim-loading-bar>
 </div>
 
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-  <div class="container-fluid">
-    <ul class="navbar-nav">
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark log-nav">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#logednav" aria-controls="logednav" aria-expanded="false" aria-label="Toggle">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="logednav">
+    <ul class="navbar-nav float-left container-fluid">
       <li class="nav-item">
         <a [routerLink]="['/job_roles']" class="nav-link" routerLinkActive="active"
           [routerLinkActiveOptions]="{exact: true}">
@@ -31,12 +59,6 @@
         <a [routerLink]="['/contact-support']" class="nav-link" routerLinkActive="active"
           [routerLinkActiveOptions]="{exact:true}">
           Support
-        </a>
-      </li>
-      <li class="nav-item">
-        <a [routerLink]="['/log-out']" class="nav-link ml-auto float-right" routerLinkActive="active"
-          [routerLinkActiveOptions]="{exact:true}">
-          Log Out
         </a>
       </li>
     </ul>

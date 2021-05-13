@@ -1,14 +1,48 @@
-div.logo-img-extend{
+/*div.logo-img-extend{
     background: url('../assets/logo-extend.png') repeat-x;
     left: 0;
     margin: 0;
     padding: 0;
     height: 20%;
-}
-.img-logo{
+}*/
+/*.img-logo{
     display: block;
     margin-top: 0;
-    height: 180px;
+    height: 200px;
+    width: 50%;
     margin-left: auto;
     margin-right: auto;
+}*/
+.logo-text{
+    font-weight: bold;
+    font-size: 5em;
+    color: rgb(0, 177, 246);
+}
+p.logo-ini{
+    font-size: 1em;
+    margin: 0;
+    padding: 0;
+    display: inline;
+    color: white;
+    font-weight: bold;
+}
+.nav-topo{
+    font-size: 0.8em;
+    border-radius: 20px;
+    height: 40px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+nav a span {
+    font-size: 2em;
+    margin-top: 0.3em;
+}
+.home-link{
+    text-decoration: none;
+    color: rgb(0, 177, 246);
+    font-family: 'Cyberdyne', sans-serif;
+    font-size: 2em;
+    
+}
+.log-nav{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
