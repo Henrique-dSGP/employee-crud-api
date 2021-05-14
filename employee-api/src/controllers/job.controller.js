@@ -39,9 +39,10 @@ exports.selectJobRoleById = async (req, res) => {
     try {
         const response = await db.query("SELECT name, min_wage, max_wage, min_w_exp FROM job_role WHERE _id = $1", [_id]
         );
-        if (response.rows.length == 0) {
+        if (response.rows.lenght == 0) {
             throw 'Job Role Not Found.'
         }
+        res.status(200).send(response.rows[0])
     } catch (err) {
         if (err == 'Job Role Not Found.') {
             res.status(404).send({

@@ -19,4 +19,7 @@ export class JobRoleService {
   deleteJobRole(_id: string): Observable<any>{
     return this.http.delete(`${this.url}/job_roles/` + _id)
   }
+  getJobRoleById(_id: string): Observable<any>{
+    return this.http.get(`${this.url}/job_roles/` + _id)
+  }
 }
