@@ -20,6 +20,8 @@ import { JobRoleGetComponent } from './job-role-get/job-role-get.component';
 import { EditEmpDialogBodyComponent } from './edit-emp-dialog-body/edit-emp-dialog-body.component';
 import { EditJobDialogBodyComponent } from './edit-job-dialog-body/edit-job-dialog-body.component';
 import { SupportContactComponent } from './support-contact/support-contact.component';
+import { FootComponent } from './foot/foot.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { SupportContactComponent } from './support-contact/support-contact.compo
     JobRoleGetComponent,
     EditEmpDialogBodyComponent,
     EditJobDialogBodyComponent,
-    SupportContactComponent
+    SupportContactComponent,
+    FootComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
