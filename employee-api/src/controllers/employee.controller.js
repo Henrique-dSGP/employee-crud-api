@@ -85,6 +85,7 @@ exports.updateEmployee = async (req, res) => {
             employee_registration = $5
             WHERE employee_id = $6`,
             [name, job_role, salary, date_of_birth, employee_registration, id]);
+        console.log(response);
         res.status(200).send({
             message: "Employee updated"
         });

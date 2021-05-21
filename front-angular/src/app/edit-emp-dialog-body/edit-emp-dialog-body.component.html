@@ -1,1 +1,69 @@
-<p>edit-emp-dialog-body works!</p>
+<div mat-dialog-title><h3>Add new employee</h3></div>
+<div mat-dialog-content>
+
+    <div class="card mb-3 border-bottom-0 border-left-0 border-right-0 border-dark">
+        <div class="card-body mt-0">
+            <div class="form-group mt-0">
+                <form [formGroup]="empForm" (ngSubmit)="submit()" class="mt-0">
+                    <label for="name" class="mt-2">Employee Name:</label>
+                    <input type="text" class="form-control" formControlName="name" #name id="name"
+                    placeholder="{{employee.name}}" required>
+                    <div *ngIf="validatorInputs('name')" class="alert alert-danger">
+                        <div *ngIf="validatorErrorsRequired('name')">
+                            This field is required!
+                        </div>
+                    </div>
+                    <label for="job_role">Job Role:</label>
+                    <select name="job_role" id="job_role" class="form-control" formControlName="job_role" #job_role id="job_role">
+                        <option  *ngFor="let job of jobs" [value]="job._id" [selected]="job._id" required>
+                            {{job.name}}
+                        </option>
+                    </select>
+                    <label for="salary">Month Salary:</label>
+                    <input type="number" class="form-control" formControlName="salary" #salary id="salary"
+                        placeholder="{{employee.salary}}" required>
+                    <div *ngIf="validatorInputs('salary')" class="alert alert-danger">
+                        <div *ngIf="validatorErrorsRequired('salary')">
+                            This field is required and only accepts numbers['0..9' and ['.' or ',']]!
+                        </div>
+                    </div>
+                    <label for="date_of_birth">Birthdate:</label>
+                    <input type="date" class="form-control" formControlName="date_of_birth" #date_of_birth id="date_of_birth" 
+                    placeholder="{{employee.date_of_birth}}" required>
+                    <div *ngIf="validatorInputs('date_of_birth')" class="alert alert-danger">
+                        <div *ngIf="validatorErrorsRequired('date_of_birth')">
+                            This field is required!
+                        </div>
+                    </div>
+                    <label for="employee_registration">Employee Registration Number:</label>
+                    <input type="number" class="form-control" formControlName="employee_registration" #employee_registration id="employee_registration" placeholder="{{employee.employee_registration}}"
+                        step=".01" required>
+                    <div *ngIf="validatorInputs('employee_registration')" class="alert alert-danger">
+                        <div *ngIf="validatorErrorsRequired('employee_registration')">
+                            This field is required and only accepts numbers['0..9']!
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div mat-dialog-actions class="ml-0">
+    <div class="col-md-12">
+    <button class="btn btn-danger float-md-left d-none d-sm-none d-md-flex" type="button" id="btn-clo" mat-dialog-close mat-raised-button>Close</button>
+    <button class="btn btn-danger float-left ml-0 d-flex d-md-none" type="button" id="btn-clo" mat-dialog-close><span class="material-icons">
+        close
+        </span></button>
+
+    <button class="btn btn-info float-md-left ml-md-3 d-none d-sm-none d-md-flex" type="button" id="btn-res" (click)="resetValue()"mat-raised-button>Reset Values</button>
+    <button class="btn btn-info float-left ml-1 ml-sm-3 d-flex d-md-none" type="button" id="btn-res" (click)="resetValue()"><span class="material-icons">
+        replay
+        </span></button>
+    <button (click)="updateEmployee(employee.employee_id) "class="btn btn-primary float-md-right d-none d-sm-none d-md-flex" type="submit" id="btn-sub"
+        [disabled]="empForm.pristine || empForm.invalid" mat-raised-button color="primary">Submit</button>
+    <button class="btn btn-primary float-right d-md-none" type="submit" id="btn-sub"
+        [disabled]="empForm.pristine || empForm.invalid"><span class="material-icons">
+            how_to_reg
+            </span></button>
+    </div>
+</div>

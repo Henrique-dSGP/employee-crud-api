@@ -2,6 +2,8 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
+import Employee from '../Employee';
 import { EmployeesService } from '../employees.service';
 import { JobRoleService } from '../job-role.service';
 import JobRole from '../JobRole';
@@ -12,7 +14,8 @@ import JobRole from '../JobRole';
   styleUrls: ['./edit-emp-dialog-body.component.css']
 })
 export class EditEmpDialogBodyComponent implements OnInit {
-  jobs: JobRole[] = []
+  jobs: JobRole[] = [];
+  employee = new Employee;
 
   empForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(5)]),
@@ -35,6 +38,7 @@ export class EditEmpDialogBodyComponent implements OnInit {
     this.jobRoleService.getJobRoles().subscribe((data: JobRole[]) => {
       this.jobs = data;
     })
+    this.employee = this.data['employee'];
   }
   resetValue() {
     this.empForm.reset()
@@ -65,6 +69,37 @@ export class EditEmpDialogBodyComponent implements OnInit {
   }
   getJobRole() {
     return this.empForm.get('job_role')
+  }
+  updateEmployee(id: string): void {
+    // se voltar como um return não funciona, por isso do void
+    this.employeeService.updateEmployee(id, this.empForm.value).subscribe(res => {
+      Swal.fire({
+        title: 'Employee Update',
+        icon: 'success',
+        showConfirmButton: true,
+        allowOutsideClick: false,
+        allowEnterKey: true,
+        allowEscapeKey: false
+      }).then((data) => {
+        this.dialogRef.close;
+        this.router.navigate(['/employee']);
+        document.location.reload()
+      })
+    },errorCalback => {
+      Swal.fire({
+        title: 'Employee Update Error',
+        icon: 'error',
+        showConfirmButton: true,
+        allowOutsideClick: false,
+        allowEnterKey: true,
+        allowEscapeKey: true
+      }).then((data) => {
+        this.dialogRef.close()
+      })
+    })
+  }
+  submit() {
+    
   }
 
 }

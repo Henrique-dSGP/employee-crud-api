@@ -14,6 +14,7 @@ import Employee from './Employee';
   providedIn: 'root'
 })
 export class EmployeesService {
+  employee = new Employee;
 
   url = 'http://localhost:3000/api';
 
@@ -21,6 +22,8 @@ export class EmployeesService {
     
   }
   createNewEmployee(employee: Employee): Observable<any> {
+    console.log(
+       this.http.post(`${this.url}/employees`, employee))
     return this.http.post(`${this.url}/employees`, employee)
     //this.http.post(`${this.url}/employees`, emp).subscribe(res => console.log(res))
   }
@@ -33,5 +36,10 @@ export class EmployeesService {
   }
   getEmployeeById(employee_id: string): Observable<any>{
     return this.http.get(`${this.url}/employees/` + employee_id)
+  }
+  updateEmployee(employee_id: string, employee: Employee): Observable<any>{
+    console.log(employee_id, employee)
+    console.log(this.http.put(`${this.url}/employees/` + employee_id, employee))
+    return this.http.put(`${this.url}/employees/` + employee_id, employee)
   }
 }

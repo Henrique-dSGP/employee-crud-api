@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import Swal from 'sweetalert2';
 import { AddEmpDialogBodyComponent } from '../add-emp-dialog-body/add-emp-dialog-body.component';
+import { EditEmpDialogBodyComponent } from '../edit-emp-dialog-body/edit-emp-dialog-body.component';
 import Employee from '../Employee';
 import { EmployeesService } from '../employees.service';
 import { JobRoleService } from '../job-role.service';
@@ -15,6 +16,7 @@ import JobRole from '../JobRole';
 export class EmployeeGetComponent implements OnInit {
   employees: Employee[] = [];
   jobs: JobRole[] = [];
+  employee = new Employee;
 
   constructor(private dialog: MatDialog, private employeeService: EmployeesService, private jobRoleService: JobRoleService) {
     //console.log(this.jobss)
@@ -40,7 +42,7 @@ export class EmployeeGetComponent implements OnInit {
     })
   }
 
-  openDialog() {
+  openDialogAdd() {
     const dialogRef = this.dialog.open(AddEmpDialogBodyComponent, {
       hasBackdrop: false,
       width: '70%',
@@ -54,9 +56,35 @@ export class EmployeeGetComponent implements OnInit {
       console.log('Dialog result: ${result}');
     })
   }
+  openDialogEdit(id: string, employee: Employee) {
+    const dialogRef = this.dialog.open(EditEmpDialogBodyComponent, {
+      hasBackdrop: false,
+      width: '70%',
+      minWidth: '60%',
+      maxWidth: '105%',
+      maxHeight: '100%',
+      backdropClass: 'backdropBackground',
+      panelClass: 'dialog-custom',
+      data: {
+        employee: employee,
+        id: id
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('Dialog result: ${result}');
+    })
+  }
   save() {
 
   }
+  /*updateEmployee(id: string): void{
+    this.employeeService.getEmployeeById(id).subscribe(data => {
+      this.employee = data;
+      this.employeeService.updateEmployee(id, this.employee).subscribe(data => {
+        console.log(data)
+      })
+    })
+  }*/
   deleteEmployee(id: string): void {
     this.employeeService.deleteEmployee(id).subscribe(res => {
       Swal.fire({
