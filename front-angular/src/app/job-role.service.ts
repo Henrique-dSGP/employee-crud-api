@@ -13,6 +13,9 @@ export class JobRoleService {
   createNewJobRole(job_role: JobRole): Observable<any>{
     return this.http.post(`${this.url}/job_roles`, job_role)
   }
+  editJobRole(id: string, job_role: JobRole): Observable<any>{
+    return this.http.put(`${this.url}/job_roles/` + id, job_role)
+  }
   getJobRoles(): Observable<any>{
     return this.http.get(`${this.url}/job_roles`)
   }

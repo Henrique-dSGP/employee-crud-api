@@ -10,7 +10,7 @@ const jobControler = require('../controllers/job.controller');
 
 router.delete('/job_roles/:id', jobControler.deleteJobRole);
 router.post('/job_roles', jobControler.createJobRole);
-router.post('/job_roles/:id', jobControler.updateJobRole);
+router.put('/job_roles/:id', jobControler.updateJobRole);
 router.get('/job_roles/:id', jobControler.selectJobRoleById);
 router.get('/job_roles', jobControler.listAllJobRoles);
 module.exports = router;

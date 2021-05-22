@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import Swal from 'sweetalert2';
 import { AddJobDialogBodyComponent } from '../add-job-dialog-body/add-job-dialog-body.component';
+import { EditJobDialogBodyComponent } from '../edit-job-dialog-body/edit-job-dialog-body.component';
 import { JobRoleService } from '../job-role.service';
 import JobRole from '../JobRole';
 
@@ -31,6 +32,24 @@ export class JobRoleGetComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('Dialog result: ${result}');
+    })
+  }
+  openDialogEdit(id: string, job_role: JobRole) {
+    const dialogRef = this.dialog.open(EditJobDialogBodyComponent, {
+      hasBackdrop: false,
+      width: '70%',
+      minWidth: '60%',
+      maxWidth: '105%',
+      maxHeight: '100%',
+      backdropClass: 'backdropBackground',
+      panelClass: 'dialog-custom',
+      data: {
+        job_role: job_role,
+        id: id
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('Dialog result: ${result}')
     })
   }
   deleteJobRole(_id: string): void {

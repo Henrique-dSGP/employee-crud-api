@@ -1,1 +1,64 @@
-<p>edit-job-dialog-body works!</p>
+<div mat-dialog-title><h3>Edit Job Role</h3></div>
+<div mat-dialog-content>
+
+    <div class="card mb-3 border-bottom-0 border-left-0 border-right-0 border-dark">
+        <div class="card-body mt-0">
+            <div class="form-group mt-0">
+                <form [formGroup]="jobForm" class="mt-0">
+                    <label for="name" class="mt-2">Job Role Name:</label>
+                    <input type="text" class="form-control" formControlName="name" #name id="name"
+                        placeholder="{{job_role.name}}" required>
+                    <div *ngIf="validatorInputs('name')" class="alert alert-danger">
+                        <div *ngIf="validatorErrorsRequired('name')">
+                            This field is required!
+                        </div>
+                    </div>
+                    <label for="min_wage">Min Wage:</label>
+                    <input type="number" class="form-control" formControlName="min_wage" #min_wage id="min_wage"
+                        placeholder="{{job_role.min_wage}}" required>
+                    <div *ngIf="validatorInputs('min_wage')" class="alert alert-danger">
+                        <div *ngIf="validatorErrorsRequired('min_wage')">
+                            This field is required!
+                        </div>
+                    </div>
+                    <label for="max_wage">Max Wage:</label>
+                    <input type="number" class="form-control" formControlName="max_wage" #max_wage id="max_wage"
+                        placeholder="{{job_role.max_wage}}" required>
+                    <div *ngIf="validatorInputs('max_wage')" class="alert alert-danger">
+                        <div *ngIf="validatorErrorsRequired('max_wage')">
+                            This field is required and only accepts numbers['0..9' and ['.' or ',']]!
+                        </div>
+                    </div>
+                    <label for="min_w_exp">Min Work Experience</label>
+                    <input type="text" class="form-control" formControlName="min_w_exp" #min_w_exp id="min_w_exp" 
+                    placeholder="{{job_role.min_w_exp}}"
+                        required>
+                    <div *ngIf="validatorInputs('min_w_exp')" class="alert alert-danger">
+                        <div *ngIf="validatorErrorsRequired('min_w_exp')">
+                            This field is required!.
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div mat-dialog-actions class="ml-0">
+    <div class="col-md-12">
+    <button class="btn btn-danger float-md-left d-none d-sm-none d-md-flex" type="button" id="btn-clo" mat-dialog-close mat-raised-button>Close</button>
+    <button class="btn btn-danger float-left ml-0 d-flex d-md-none" type="button" id="btn-clo" mat-dialog-close><span class="material-icons">
+        close
+        </span></button>
+
+    <button class="btn btn-info float-md-left ml-md-3 d-none d-sm-none d-md-flex" type="button" id="btn-res" (click)="resetValue()"mat-raised-button>Reset Values</button>
+    <button class="btn btn-info float-left ml-1 ml-sm-3 d-flex d-md-none" type="button" id="btn-res" (click)="resetValue()"><span class="material-icons">
+        replay
+        </span></button>
+    <button (click)="editJobRole(job_role._id) "class="btn btn-primary float-md-right d-none d-sm-none d-md-flex" type="submit" id="btn-sub"
+        [disabled]="jobForm.pristine || jobForm.invalid" mat-raised-button color="primary">Submit</button>
+    <button class="btn btn-primary float-right d-md-none" type="submit" id="btn-sub"
+        [disabled]="jobForm.pristine || jobForm.invalid"><span class="material-icons">
+            how_to_reg
+            </span></button>
+    </div>
+</div>
